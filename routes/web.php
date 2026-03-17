@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
+use App\Http\Controllers\TaskController;
+
+Route::resource('tasks', TaskController::class);
 
 Route::inertia('/', 'Welcome', [
     'canRegister' => Features::enabled(Features::registration()),
