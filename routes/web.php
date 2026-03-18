@@ -3,8 +3,12 @@
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\TaskTypeController;
 
-Route::resource('tasks', TaskController::class);
+Route::middleware(['auth'])->group(function () {
+    Route::resource('tasks', TaskController::class);
+    Route::resource('task-types', TaskTypeController::class);
+});
 
 Route::inertia('/', 'Welcome', [
     'canRegister' => Features::enabled(Features::registration()),

@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Task;
+use App\Models\TaskType;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -29,5 +31,10 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('password'),
             'email_verified_at' => now(),
         ]);
+
+        TaskType::factory(10)->create();
+        Task::factory(20)->create();
+
+
     }
 }

@@ -42,6 +42,7 @@ class User extends Authenticatable
      *
      * @return array<string, string>
      */
+
     protected function casts(): array
     {
         return [
@@ -50,9 +51,19 @@ class User extends Authenticatable
             'two_factor_confirmed_at' => 'datetime',
         ];
     }
-
     public function tasks()
     {
-        return $this->hasMany(Task::class, 'created_by');
+        return $this->hasMany(Task::class, 'created_by'); // creator
     }
+
+    public function assignedTasks()
+    {
+        return $this->belongsToMany(Task::class); // assigned tasks
+    }
+
+    public function users()
+{
+    return $this->belongsToMany(User::class);
+}
+
 }

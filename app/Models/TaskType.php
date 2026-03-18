@@ -2,14 +2,19 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class TaskType extends Model
 {
-    public function task(): HasOne
-    {
-        return $this->hasOne(Task::class);
-    }
+    use HasFactory;
+    protected $fillable = [
+        'type',
+        'description',
+    ];
 
+    public function tasks()
+    {
+        return $this->hasMany(Task::class, 'task_type_id');
+    }
 }

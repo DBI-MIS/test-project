@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('task_types', function (Blueprint $table) {
-            $table->id();
-            $table->string('type');
-            $table->timestamps();
+        Schema::table('tasks', function (Blueprint $table) {
+            $table->foreignId('task_type_id')
+                ->nullable()
+                ->constrained('task_types')
+                ->cascadeOnDelete();
         });
     }
 
@@ -23,6 +24,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('task_types');
+        Schema::table('tasks', function (Blueprint $table) {
+            //
+        });
     }
 };
